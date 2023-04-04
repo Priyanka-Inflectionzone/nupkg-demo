@@ -2,7 +2,8 @@ name: "Build and Deploy NuGet Package"
 
 on:
   push:
-    branches: [master]
+    tags:
+      - v*
 
 env:
   PROJECT_PATH: "Applogger1.csproj"
@@ -16,6 +17,10 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v2
 
+      - name: Exit if not on master branch
+        if: endsWith(github.ref, 'master') == false
+        run: exit -1
+
       - name: "Install dotnet"
         uses: actions/setup-dotnet@v3
         with:
@@ -27,8 +32,12 @@ jobs:
       - name: "Build project"
         run: dotnet build ${{ env.PROJECT_PATH }} --no-restore --configuration Release
 
+       - name: 'Get Version'
+         id: version
+         uses: battila7/get-version-action@v2
+
       - name: "Pack project"
-        run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
+        run: dotnet pack ${{ env.PROJECT_PATH }} --no-restore --no-build --configuration Release --include-symbols -p:PackageVersion=${{ steps.version.outputs.version-without-v }} --output ${{ env.PACKAGE_OUTPUT_DIRECTORY }}
 
       - name: "Auth package"
         run: dotnet nuget add source --username Priyanka-Inflectionzone --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Priyanka-Inflectionzone/index.json"
