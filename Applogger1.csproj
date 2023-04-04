@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <PackageId>Priyanka.Util.Applogger1</PackageId>
+    <Title>Applogger1</Title>
+    <Version>1.0.0</Version>
+    <Authors>Priyanka</Authors>
+    <Company>Inflection</Company>
+    <Product>Applogger</Product>
+    <Description>Library to log text to console</Description>
+    <RepositoryUrl>https://github.com/Priyanka-Inflectionzone/nugetdemo.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>First release of package</PackageReleaseNotes>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+</Project>
