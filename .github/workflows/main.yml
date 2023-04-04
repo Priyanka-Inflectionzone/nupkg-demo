@@ -17,10 +17,6 @@ jobs:
       - name: "Checkout"
         uses: actions/checkout@v2
 
-      - name: Exit if not on master branch
-        if: endsWith(github.ref, 'master') == false
-        run: exit -1
-
       - name: "Install dotnet"
         uses: actions/setup-dotnet@v3
         with:
