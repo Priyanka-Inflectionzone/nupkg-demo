@@ -6,7 +6,7 @@ on:
 
 env:
   PROJECT_PATH: "Applogger1.csproj"
-  PACKAGE_OUTPUT_DIRECTORY: '${{ github.workspace }}\output'
+  PACKAGE_OUTPUT_DIRECTORY: "${{ github.workspace }}/output"
 
 jobs:
   deploy:
@@ -34,4 +34,4 @@ jobs:
         run: dotnet nuget add source --username Priyanka-Inflectionzone --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Priyanka-Inflectionzone/index.json"
 
       - name: "Push package"
-        run: dotnet nuget push "${{ env.PACKAGE_OUTPUT_DIRECTORY }}\*.nupkg" --source "github" --skip-duplicate
+        run: dotnet nuget push "${{ env.PACKAGE_OUTPUT_DIRECTORY }}/*.nupkg" --source "github" --skip-duplicate
