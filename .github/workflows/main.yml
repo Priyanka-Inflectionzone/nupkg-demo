@@ -5,7 +5,7 @@ on:
     branches: [master]
 
 env:
-  PROJECT_PATH: "./*.csproj"
+  PROJECT_PATH: "Applogger1.csproj"
   PACKAGE_OUTPUT_DIRECTORY: '${{ github.workspace }}\output'
 
 jobs:
